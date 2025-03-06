@@ -31,10 +31,12 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Types Imports
 import type { viewStateType } from './index'
+import usePatientStore from '@/store/usePatientStore'
 
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import DirectionalIcon from '@components/DirectionalIcon'
+import { normalizeZoneId, getZoneName, getZoneColor } from '@/utils/zoneUtils'
 
 type Props = {
   backdropOpen: boolean
@@ -110,79 +112,6 @@ const Timeline = styled(MuiTimeline)<TimelineProps>({
   }
 })
 
-type PatientDataType = {
-  rut: string
-  nombre?: string
-  ubicacion_actual: string
-  progreso: number
-  tiempos?: {
-    preAnestesia?: {
-      ingreso: string | null
-      salida: string | null
-    }
-    pabellon?: {
-      ingreso: string | null
-      salida: string | null
-    }
-    recuperacion?: {
-      ingreso: string | null
-      salida: string | null
-    }
-  }
-}
-
-// Datos de ejemplo - esto deberías reemplazarlo con tus datos reales
-const patientsData: PatientDataType[] = [
-  {
-    rut: '12.345.678-9',
-    nombre: 'Carlos Gutiérrez',
-    ubicacion_actual: 'preAnestesia',
-    progreso: 33,
-    tiempos: {
-      preAnestesia: {
-        ingreso: '2025-01-17T09:30:00',
-        salida: null
-      }
-    }
-  },
-  {
-    rut: '23.456.789-0',
-    nombre: 'María López',
-    ubicacion_actual: 'pabellon',
-    progreso: 66,
-    tiempos: {
-      preAnestesia: {
-        ingreso: '2025-01-17T08:15:00',
-        salida: '2025-01-17T09:00:00'
-      },
-      pabellon: {
-        ingreso: '2025-01-17T09:15:00',
-        salida: null
-      }
-    }
-  },
-  {
-    rut: '34.567.890-1',
-    nombre: 'Juan Pérez',
-    ubicacion_actual: 'recuperacion',
-    progreso: 90,
-    tiempos: {
-      preAnestesia: {
-        ingreso: '2025-01-17T07:30:00',
-        salida: '2025-01-17T08:15:00'
-      },
-      pabellon: {
-        ingreso: '2025-01-17T08:30:00',
-        salida: '2025-01-17T10:45:00'
-      },
-      recuperacion: {
-        ingreso: '2025-01-17T11:00:00',
-        salida: null
-      }
-    }
-  }
-]
-
 const ScrollWrapper = ({ children, isBelowLgScreen }: { children: ReactNode; isBelowLgScreen: boolean }) => {
   if (isBelowLgScreen) {
     return <div className='bs-full overflow-y-auto overflow-x-hidden pbe-5 pli-5'>{children}</div>
@@ -196,7 +125,7 @@ const ScrollWrapper = ({ children, isBelowLgScreen }: { children: ReactNode; isB
 }
 
 // Función para formatear fecha y hora
-const formatDateTime = (dateTimeStr: string | null) => {
+const formatDateTime = (dateTimeStr: string | Date | null) => {
   if (!dateTimeStr) return '---'
   const date = new Date(dateTimeStr)
   return date.toLocaleTimeString('es-ES', {
@@ -205,47 +134,37 @@ const formatDateTime = (dateTimeStr: string | null) => {
   })
 }
 
-// Función para obtener el color según la zona
-const getZoneColor = (zone: string) => {
-  switch (zone) {
-    case 'preAnestesia':
-      return 'warning'
-    case 'pabellon':
-      return 'error'
-    case 'recuperacion':
-      return 'success'
-    default:
-      return 'info'
-  }
-}
-
-// Función para obtener el nombre de la zona
-const getZoneName = (zone: string) => {
-  switch (zone) {
-    case 'preAnestesia':
-      return 'Pre-anestesia'
-    case 'pabellon':
-      return 'Pabellón'
-    case 'recuperacion':
-      return 'Recuperación'
-    default:
-      return 'Desconocida'
-  }
-}
-
 const PatientTracking = ({
-  patientData,
+  patient,
   index,
   expanded,
   handleChange
 }: {
-  patientData: PatientDataType
+  patient: any
   index: number
   expanded: number | false
   handleChange: (panel: number) => (event: SyntheticEvent, isExpanded: boolean) => void
 }) => {
-  const zoneColor = getZoneColor(patientData.ubicacion_actual)
-  const zoneName = getZoneName(patientData.ubicacion_actual)
+  const normalizedZone = normalizeZoneId(patient.ubicacion_actual)
+  
+  // Mapear nuestros colores a los colores de MUI
+  const getMuiColor = (zone: string) => {
+    switch (zone) {
+      case 'preAnestesia': return 'warning';
+      case 'pabellon': return 'error';
+      case 'recuperacion': return 'success';
+      default: return 'primary';
+    }
+  };
+  
+  const zoneColorType = getMuiColor(normalizedZone);
+  const zoneName = getZoneName(normalizedZone);
+
+  // Calcular progreso basado en la ubicación actual
+  let progress = 0
+  if (normalizedZone === 'preAnestesia') progress = 33
+  else if (normalizedZone === 'pabellon') progress = 66
+  else if (normalizedZone === 'recuperacion') progress = 90
 
   return (
     <Accordion expanded={expanded === index} onChange={handleChange(index)}>
@@ -259,29 +178,29 @@ const PatientTracking = ({
         }
       >
         <div className='flex gap-4 items-center'>
-          <CustomAvatar skin='light' color={zoneColor}>
+          <CustomAvatar skin='light' color={zoneColorType}>
             <i className='ri-user-line' />
           </CustomAvatar>
           <div className='flex flex-col gap-1'>
-            <Typography className='font-normal'>{patientData.rut}</Typography>
-            <Typography className='!text-textSecondary font-normal'>{patientData.nombre || 'Paciente'}</Typography>
+            <Typography className='font-normal'>{patient.rut}</Typography>
+            <Typography className='!text-textSecondary font-normal'>{zoneName}</Typography>
           </div>
         </div>
       </AccordionSummary>
       <AccordionDetails>
         <div className='flex flex-col gap-1 plb-4'>
           <div className='flex items-center justify-between'>
-            <Typography className='!text-textPrimary'>Progreso del paciente</Typography>
-            <Typography>{patientData.progreso}%</Typography>
+            <Typography className='!text-textPrimary'>Progreso del Paciente</Typography>
+            <Typography>{progress}%</Typography>
           </div>
-          <LinearProgress variant='determinate' value={patientData.progreso} color={zoneColor} />
+          <LinearProgress variant='determinate' value={progress} color={zoneColorType} />
           <div className='flex justify-between items-center mt-2'>
-            <Typography variant='body2'>Ubicación actual:</Typography>
-            <Chip label={zoneName} color={zoneColor} size='small' />
+            <Typography variant='body2'>Última actualización:</Typography>
+            <Typography variant='body2'>{formatDateTime(patient.ultima_actualizacion)}</Typography>
           </div>
         </div>
         <Timeline className='pbs-4'>
-          {patientData.tiempos?.preAnestesia && (
+          {patient.ing_preanestesia && (
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot variant='outlined' color='warning' className='mlb-0'>
@@ -294,16 +213,14 @@ const PatientTracking = ({
                   Pre-anestesia
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
-                  Ingreso: {formatDateTime(patientData.tiempos.preAnestesia.ingreso)}
+                  Ingreso: {formatDateTime(patient.ing_preanestesia)}
                 </Typography>
-                <Typography variant='body2'>
-                  Salida: {formatDateTime(patientData.tiempos.preAnestesia.salida)}
-                </Typography>
+                <Typography variant='body2'>Salida: {formatDateTime(patient.sal_preanestesia)}</Typography>
               </TimelineContent>
             </TimelineItem>
           )}
 
-          {patientData.tiempos?.pabellon && (
+          {patient.ingreso_pabellon && (
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot variant='outlined' color='error' className='mlb-0'>
@@ -316,14 +233,14 @@ const PatientTracking = ({
                   Pabellón
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
-                  Ingreso: {formatDateTime(patientData.tiempos?.pabellon.ingreso)}
+                  Ingreso: {formatDateTime(patient.ingreso_pabellon)}
                 </Typography>
-                <Typography variant='body2'>Salida: {formatDateTime(patientData.tiempos?.pabellon.salida)}</Typography>
+                <Typography variant='body2'>Salida: {formatDateTime(patient.salida_pabellon)}</Typography>
               </TimelineContent>
             </TimelineItem>
           )}
 
-          {patientData.tiempos?.recuperacion && (
+          {patient.ingreso_recu && (
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot variant='outlined' color='success' className='mlb-0'>
@@ -335,11 +252,9 @@ const PatientTracking = ({
                   Recuperación
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
-                  Ingreso: {formatDateTime(patientData.tiempos?.recuperacion.ingreso)}
+                  Ingreso: {formatDateTime(patient.ingreso_recu)}
                 </Typography>
-                <Typography variant='body2'>
-                  Salida: {formatDateTime(patientData.tiempos?.recuperacion.salida)}
-                </Typography>
+                <Typography variant='body2'>Salida: {formatDateTime(patient.salida_recu)}</Typography>
               </TimelineContent>
             </TimelineItem>
           )}
@@ -361,17 +276,24 @@ const PatientSidebar = (props: Props) => {
     isBelowSmScreen,
     expanded,
     setExpanded,
-    setViewState,
-    patientData
+    setViewState
   } = props
 
+  // Store
+  const { patients, selectedPatient, selectPatient } = usePatientStore()
+
   const handleChange = (panel: number) => (event: SyntheticEvent, isExpanded: boolean) => {
-    if (isExpanded) {
+    if (isExpanded && patients[panel]) {
       setViewState({
-        x: patientData.features[panel].geometry.x,
-        y: patientData.features[panel].geometry.y,
+        x: patients[panel].x,
+        y: patients[panel].y,
         zoom: 2
       })
+
+      // Seleccionar paciente en el store
+      selectPatient(patients[panel].rut)
+    } else {
+      selectPatient(null)
     }
 
     setExpanded(isExpanded ? panel : false)
@@ -408,7 +330,7 @@ const PatientSidebar = (props: Props) => {
       }}
     >
       <div className='flex justify-between p-5'>
-        <Typography variant='h5'>Pacientes Activos</Typography>
+        <Typography variant='h5'>Pacientes Activos ({patients.length})</Typography>
 
         {isBelowMdScreen ? (
           <IconButton
@@ -422,15 +344,21 @@ const PatientSidebar = (props: Props) => {
         ) : null}
       </div>
       <ScrollWrapper isBelowLgScreen={isBelowLgScreen}>
-        {patientsData.map((item, index) => (
-          <PatientTracking
-            patientData={item}
-            index={index}
-            expanded={expanded}
-            handleChange={handleChange}
-            key={index}
-          />
-        ))}
+        {patients.length > 0 ? (
+          patients.map((patient, index) => (
+            <PatientTracking
+              patient={patient}
+              index={index}
+              expanded={expanded}
+              handleChange={handleChange}
+              key={patient.rut}
+            />
+          ))
+        ) : (
+          <div className='flex justify-center items-center p-8 text-gray-500'>
+            <Typography>No hay pacientes activos en este momento</Typography>
+          </div>
+        )}
       </ScrollWrapper>
     </Drawer>
   )

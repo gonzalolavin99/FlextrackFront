@@ -45,7 +45,7 @@ interface PatientStore {
   setError: (error: string | null) => void
 }
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3000'
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
 const TIME_WINDOW = 5 * 60 * 1000 // 5 minutos en milisegundos
 
 let socketInstance: Socket | null = null

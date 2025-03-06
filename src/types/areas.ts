@@ -17,10 +17,10 @@ export const HOSPITAL_ZONES: ZoneDefinition[] = [
     name: 'Pre-anestesia',
     points: [
       [
-        { x: 8.35, y: 6.2 },
-        { x: 8.35, y: 4.88 },
-        { x: 3.63, y: 4.88 },
-        { x: 3.63, y: 6.2 } // Cerrar el polígono
+        { x: 12, y: 3.3 },
+        { x: 12, y: 1.48 },
+        { x: 6, y: 1.48 },
+        { x: 6, y: 3.3 } // Cerrar el polígono
       ]
     ]
   },
@@ -29,17 +29,17 @@ export const HOSPITAL_ZONES: ZoneDefinition[] = [
     name: 'Pabellón',
     points: [
       [
-        { x: 4.25, y: 1.48 },
-        { x: 4.25, y: 4.85 },
-        { x: 1.56, y: 4.85 },
-        { x: 1.56, y: 1.48 } // Cerrar el polígono
+        { x: 3.5, y: 4.2 },
+        { x: 3.5, y: 8.08 },
+        { x: 6.8, y: 8.08 },
+        { x: 6.8, y: 4.2 } // Cerrar el polígono
       ],
       // Mini cuadrado adicional [
       [
-        { x: 1.6, y: 4.85 },
-        { x: 1.6, y: 6.2 },
-        { x: 3.55, y: 6.2 },
-        { x: 3.55, y: 4.85 }
+        { x: 3.5, y: 4.2 },
+        { x: 3.5, y: 1.48 },
+        { x: 5.95, y: 1.48 },
+        { x: 5.95, y: 4.2 }
       ]
     ]
   },
@@ -49,17 +49,17 @@ export const HOSPITAL_ZONES: ZoneDefinition[] = [
     points: [
       // Polígono principal
       [
-        { x: 6.0, y: 1.48 },
-        { x: 6.0, y: 4.2 },
-        { x: 4.29, y: 4.2 },
-        { x: 4.29, y: 1.48 },
+        { x: 6.9, y: 4.2 },
+        { x: 6.9, y: 8.08 },
+        { x: 9.0, y: 8.08 },
+        { x: 9.0, y: 4.2 },
       ],
       // Mini cuadrado adicional
       [
-        { x: 7.65, y: 1.48 },
-        { x: 7.65, y: 3.05 },
-        { x: 6.0, y: 3.05 },
-        { x: 6.0, y: 1.48 }
+        { x: 11.06, y: 5.85 },
+        { x: 11.06, y: 8.08 },
+        { x: 9.0, y: 8.08 },
+        { x: 9.0, y: 5.85 }
       ]
     ]
   }

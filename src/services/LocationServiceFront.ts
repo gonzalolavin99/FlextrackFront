@@ -14,9 +14,9 @@ export interface AntennaPosition {
 }
 
 export const ANTENNA_POSITIONS: Record<string, AntennaPosition> = {
-  '0001': { x: 5.58, y: 4.95 },
-  '0002': { x: 3.60, y: 4.73 },
-  '0003': { x: 6.16, y: 3.02 }
+  '0001': { x: 8.45, y: 3.25 },
+  '0002': { x: 5.97, y: 3.51 },
+  '0003': { x: 9.15, y: 5.9 }
 }
 
 export class LocationService {

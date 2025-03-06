@@ -15,7 +15,7 @@ import classNames from 'classnames'
 //Components Imports
 import CustomIconButton from '@core/components/mui/IconButton'
 import PatientSidebar from './PatientSidebar'
-import HospitalMap from './HospitalMap'
+import CustomHospitalMap from './CustomHospitalMap'
 import TimeControls from './TimeControls'
 
 // Hook Imports
@@ -125,11 +125,12 @@ const HospitalTracking = () => {
         }
       )}
     >
+      {/* Menú de hamburguesa móvil */}
       {isBelowMdScreen ? (
         <CustomIconButton
           variant='contained'
           color='primary'
-          className='absolute top-4 left-4 z-10 bg-backgroundPaper text-textPrimary hover:bg-backgroundPaper focus:bg-backgroundPaper active:bg-backgroundPaper'
+          className='absolute top-4 left-4 z-20 bg-backgroundPaper text-textPrimary hover:bg-backgroundPaper focus:bg-backgroundPaper active:bg-backgroundPaper'
           onClick={() => {
             setSidebarOpen(true)
             setBackdropOpen(true)
@@ -138,21 +139,36 @@ const HospitalTracking = () => {
           <i className='ri-menu-line text-2xl' />
         </CustomIconButton>
       ) : null}
-      <PatientSidebar
-        backdropOpen={backdropOpen}
-        setBackdropOpen={setBackdropOpen}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        isBelowMdScreen={isBelowMdScreen}
-        isBelowLgScreen={isBelowLgScreen}
-        isBelowSmScreen={isBelowSmScreen}
-        expanded={expanded}
-        setExpanded={setExpanded}
-        setViewState={setViewState}
-        patientData={initialPatientData}
-      />
-      <HospitalMap patientIndex={expanded} viewState={viewState} patientData={initialPatientData} />
+
+      {/* Layout principal con flexbox para separar la sidebar y el mapa */}
+      <div className='flex w-full h-full'>
+        {/* Contenedor de la sidebar */}
+        <div className={`h-full z-10 ${!isBelowMdScreen ? 'w-[360px] flex-shrink-0' : ''}`}>
+          <PatientSidebar
+            backdropOpen={backdropOpen}
+            setBackdropOpen={setBackdropOpen}
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+            isBelowMdScreen={isBelowMdScreen}
+            isBelowLgScreen={isBelowLgScreen}
+            isBelowSmScreen={isBelowSmScreen}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            setViewState={setViewState}
+            patientData={initialPatientData}
+          />
+        </div>
+
+        {/* Contenedor del mapa */}
+        <div className='flex-grow h-full relative'>
+          <CustomHospitalMap patientIndex={expanded} viewState={viewState} patientData={initialPatientData} />
+        </div>
+      </div>
+
+      {/* Controles de tiempo */}
       <TimeControls onTimeChange={setSimulatedTime} />
+
+      {/* Backdrop para dispositivos móviles */}
       <Backdrop open={backdropOpen} onClick={() => setBackdropOpen(false)} className='absolute z-10' />
     </div>
   )
