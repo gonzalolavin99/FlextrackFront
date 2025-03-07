@@ -149,8 +149,8 @@ const HospitalTracking = () => {
             setBackdropOpen={setBackdropOpen}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
-            isBelowMdScreen={isBelowMdScreen}
             isBelowLgScreen={isBelowLgScreen}
+            isBelowMdScreen={isBelowMdScreen}
             isBelowSmScreen={isBelowSmScreen}
             expanded={expanded}
             setExpanded={setExpanded}
@@ -161,7 +161,13 @@ const HospitalTracking = () => {
 
         {/* Contenedor del mapa */}
         <div className='flex-grow h-full relative'>
-          <CustomHospitalMap patientIndex={expanded} viewState={viewState} patientData={initialPatientData} />
+          {/* CAMBIO: Pasamos setViewState como prop para que el mapa pueda manejar controles de zoom */}
+          <CustomHospitalMap
+            patientIndex={expanded}
+            viewState={viewState}
+            patientData={initialPatientData}
+            setViewState={setViewState}
+          />
         </div>
       </div>
 

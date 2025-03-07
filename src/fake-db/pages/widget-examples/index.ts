@@ -29,28 +29,28 @@ export const db: CardStatsType = {
   ],
   statsHorizontalWithBorder: [
     {
-      title: 'On route vehicles',
-      stats: 42,
+      title: 'Pacientes Activos',
+      stats: 5,
       trendNumber: 18.2,
       avatarIcon: 'ri-car-line',
       color: 'primary'
     },
     {
-      title: 'Vehicles with errors',
+      title: 'Pacientes en preanestesia',
       stats: 8,
       trendNumber: -8.7,
       avatarIcon: 'ri-alert-line',
       color: 'warning'
     },
     {
-      title: 'Deviated from route',
-      stats: 27,
+      title: 'Pacientes en pabellon',
+      stats: 3,
       trendNumber: 4.3,
       avatarIcon: 'ri-route-line',
       color: 'error'
     },
     {
-      title: 'Late vehicles',
+      title: 'Pacientes en recuperación', 
       stats: 13,
       trendNumber: 2.5,
       avatarIcon: 'ri-time-line',

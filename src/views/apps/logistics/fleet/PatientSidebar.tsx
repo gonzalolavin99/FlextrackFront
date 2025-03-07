@@ -134,6 +134,43 @@ const formatDateTime = (dateTimeStr: string | Date | null) => {
   })
 }
 
+// Función para calcular la duración en minutos entre dos timestamps
+const calculateDuration = (startTime: string | Date | null, endTime: string | Date | null): number | null => {
+  if (!startTime || !endTime) return null
+
+  try {
+    const start = new Date(startTime)
+    const end = new Date(endTime)
+
+    // Calcular diferencia en milisegundos y convertir a minutos
+    const diffMs = end.getTime() - start.getTime()
+    return Math.floor(diffMs / (1000 * 60))
+  } catch (error) {
+    console.error('Error calculando duración:', error)
+    return null
+  }
+}
+
+// Función para formatear la duración en formato legible
+const formatDuration = (minutes: number | null): string => {
+  if (minutes === null) return ''
+
+  // Si es menos de una hora, mostrar solo minutos
+  if (minutes < 60) {
+    return `(${minutes} min)`
+  }
+
+  // Si es una hora o más, mostrar horas y minutos
+  const hours = Math.floor(minutes / 60)
+  const remainingMinutes = minutes % 60
+
+  if (remainingMinutes === 0) {
+    return `(${hours} h)`
+  } else {
+    return `(${hours} h ${remainingMinutes} min)`
+  }
+}
+
 const PatientTracking = ({
   patient,
   index,
@@ -146,25 +183,34 @@ const PatientTracking = ({
   handleChange: (panel: number) => (event: SyntheticEvent, isExpanded: boolean) => void
 }) => {
   const normalizedZone = normalizeZoneId(patient.ubicacion_actual)
-  
+
   // Mapear nuestros colores a los colores de MUI
   const getMuiColor = (zone: string) => {
     switch (zone) {
-      case 'preAnestesia': return 'warning';
-      case 'pabellon': return 'error';
-      case 'recuperacion': return 'success';
-      default: return 'primary';
+      case 'preanestesia':
+        return 'warning'
+      case 'pabellon':
+        return 'error'
+      case 'recuperacion':
+        return 'success'
+      default:
+        return 'primary'
     }
-  };
-  
-  const zoneColorType = getMuiColor(normalizedZone);
-  const zoneName = getZoneName(normalizedZone);
+  }
+
+  const zoneColorType = getMuiColor(normalizedZone)
+  const zoneName = getZoneName(normalizedZone)
 
   // Calcular progreso basado en la ubicación actual
   let progress = 0
-  if (normalizedZone === 'preAnestesia') progress = 33
+  if (normalizedZone === 'preanestesia') progress = 33
   else if (normalizedZone === 'pabellon') progress = 66
   else if (normalizedZone === 'recuperacion') progress = 90
+
+  // Calcular duraciones
+  const preanestesiaDuration = calculateDuration(patient.ing_preanestesia, patient.sal_preanestesia)
+  const pabellonDuration = calculateDuration(patient.ingreso_pabellon, patient.salida_pabellon)
+  const recuperacionDuration = calculateDuration(patient.ingreso_recu, patient.salida_recu)
 
   return (
     <Accordion expanded={expanded === index} onChange={handleChange(index)}>
@@ -210,7 +256,8 @@ const PatientTracking = ({
               </TimelineSeparator>
               <TimelineContent className='flex flex-col gap-0.5 pbs-0 pis-4 pbe-5'>
                 <Typography variant='caption' className='uppercase' color='warning.main'>
-                  Pre-anestesia
+                  Pre-anestesia{' '}
+                  {preanestesiaDuration && <span className='text-xs'>{formatDuration(preanestesiaDuration)}</span>}
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
                   Ingreso: {formatDateTime(patient.ing_preanestesia)}
@@ -230,7 +277,7 @@ const PatientTracking = ({
               </TimelineSeparator>
               <TimelineContent className='flex flex-col gap-0.5 pbs-0 pis-4 pbe-5'>
                 <Typography variant='caption' className='uppercase' color='error.main'>
-                  Pabellón
+                  Pabellón {pabellonDuration && <span className='text-xs'>{formatDuration(pabellonDuration)}</span>}
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
                   Ingreso: {formatDateTime(patient.ingreso_pabellon)}
@@ -249,7 +296,8 @@ const PatientTracking = ({
               </TimelineSeparator>
               <TimelineContent className='flex flex-col gap-0.5 pbs-0 pis-4 pbe-5'>
                 <Typography variant='caption' className='uppercase' color='success.main'>
-                  Recuperación
+                  Recuperación{' '}
+                  {recuperacionDuration && <span className='text-xs'>{formatDuration(recuperacionDuration)}</span>}
                 </Typography>
                 <Typography className='font-medium !text-textPrimary'>
                   Ingreso: {formatDateTime(patient.ingreso_recu)}
@@ -276,7 +324,8 @@ const PatientSidebar = (props: Props) => {
     isBelowSmScreen,
     expanded,
     setExpanded,
-    setViewState
+    setViewState,
+    patientData
   } = props
 
   // Store
@@ -284,14 +333,18 @@ const PatientSidebar = (props: Props) => {
 
   const handleChange = (panel: number) => (event: SyntheticEvent, isExpanded: boolean) => {
     if (isExpanded && patients[panel]) {
-      setViewState({
-        x: patients[panel].x,
-        y: patients[panel].y,
-        zoom: 2
-      })
-
-      // Seleccionar paciente en el store
+      // Seleccionamos el paciente y centramos el mapa en él pero sin hacer zoom
       selectPatient(patients[panel].rut)
+
+      // Opcionalmente, podemos centrar el mapa en el paciente sin cambiar el zoom
+      if (patients[panel].x && patients[panel].y) {
+        // Corregido: pasamos un objeto directamente en lugar de una función
+        setViewState({
+          x: patients[panel].x,
+          y: patients[panel].y,
+          zoom: 1 // Mantener zoom en 1 para evitar acercamiento
+        })
+      }
     } else {
       selectPatient(null)
     }

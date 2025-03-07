@@ -202,7 +202,7 @@ const LogisticsOverviewTable = ({ vehicleData }: { vehicleData?: Vehicle[] }) =>
   return (
     <Card>
       <CardHeader
-        title='On route vehicles'
+        title='Pacientes Activos'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <div className='overflow-x-auto'>

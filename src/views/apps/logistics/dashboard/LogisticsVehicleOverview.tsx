@@ -30,7 +30,7 @@ type dataTypes = {
 const data: dataTypes[] = [
   {
     icon: 'ri-car-line',
-    heading: 'On the way',
+    heading: 'Activos',
     time: '2hr 10min',
     progressColor: 'action',
     progressColorVariant: 'hover',
@@ -39,7 +39,7 @@ const data: dataTypes[] = [
   },
   {
     icon: 'ri-download-2-line',
-    heading: 'Unloading',
+    heading: 'Preanestesia',
     time: '3hr 15min',
     progressColor: 'primary',
     progressColorVariant: 'main',
@@ -48,7 +48,7 @@ const data: dataTypes[] = [
   },
   {
     icon: 'ri-upload-line',
-    heading: 'Loading',
+    heading: 'Pabellón',
     time: '1hr 24min',
     progressColor: 'info',
     progressColorVariant: 'main',
@@ -57,7 +57,7 @@ const data: dataTypes[] = [
   },
   {
     icon: 'ri-time-line',
-    heading: 'Waiting',
+    heading: 'Recuperación',
     time: '5hr 19min',
     progressColor: 'SnackbarContent',
     progressColorVariant: 'bg',
@@ -70,7 +70,7 @@ const LogisticsVehicleOverview = () => {
   return (
     <Card>
       <CardHeader
-        title='Vehicle Overview'
+        title='Estado Pacientes'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <CardContent>

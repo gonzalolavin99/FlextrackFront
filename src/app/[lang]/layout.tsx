@@ -23,9 +23,9 @@ import '@/app/globals.css'
 import '@assets/iconify-icons/generated-icons.css'
 
 export const metadata = {
-  title: 'Materio - Material Design Next.js Admin Template',
+  title: 'FlexTrack - Tracking de pacientes en tiempo real',
   description:
-    'Materio - Material Design Next.js Admin Dashboard Template - is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.'
+    'FlexTrack - Tracking de pacientes en tiempo real.'
 }
 
 const RootLayout = ({ children, params }: ChildrenType & { params: { lang: Locale } }) => {

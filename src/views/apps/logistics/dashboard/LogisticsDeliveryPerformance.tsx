@@ -23,19 +23,19 @@ type dataTypes = {
 }
 
 const deliveryData: dataTypes[] = [
-  { title: 'Packages in transit', value: '10k', change: 25.8, icon: 'ri-gift-line', color: 'primary' },
-  { title: 'Packages out for delivery', value: '5k', change: 4.3, icon: 'ri-car-line', color: 'info' },
+  { title: 'Pacientes atendidos en los últimos 7 días', value: '10k', change: 25.8, icon: 'ri-gift-line', color: 'primary' },
+  { title: 'Pacientes últimos 30 días', value: '5k', change: 4.3, icon: 'ri-car-line', color: 'info' },
   { title: 'Packages delivered', value: '15k', change: -12.5, icon: 'ri-check-line', color: 'success' },
   { title: 'Delivery success rate', value: '95%', change: 35.6, icon: 'ri-home-6-line', color: 'warning' },
   { title: 'Average delivery time', value: '2.5 Days', change: -2.15, icon: 'ri-time-line', color: 'secondary' },
-  { title: 'Customer satisfaction', value: '4.5/5', change: 5.7, icon: 'ri-user-3-line', color: 'error' }
+  { title: 'Satisfacción de los pacientes', value: '4.5/5', change: 5.7, icon: 'ri-user-3-line', color: 'error' }
 ]
 
 const LogisticsDeliveryPerformance = () => {
   return (
     <Card>
       <CardHeader
-        title='Delivery Performance'
+        title='Estadísticas Procedimientos'
         subheader='12% increase in this month'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Select All', 'Refresh', 'Share']} />}
       />
