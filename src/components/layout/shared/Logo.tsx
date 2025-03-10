@@ -6,13 +6,15 @@ import Image from 'next/image'
 type LogoProps = {
   width?: string | number
   height?: string | number
+  marginTop?: string | number,
+  marginBottom?: string | number,
   className?: string
   style?: React.CSSProperties
 }
 
 const Logo = (props: LogoProps) => {
   // Extraer width y height de props con valores predeterminados
-  const { width = '150em', height = '140em', className, style, ...restProps } = props
+  const { width = '150em', height = '70em', marginTop = '0.5em',marginBottom = '0', className, style, ...restProps } = props
 
   // Convertir dimensiones a números para el componente Image
   const widthNum = typeof width === 'number' ? width : parseInt(width) || 40

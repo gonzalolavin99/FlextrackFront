@@ -29,7 +29,7 @@ type dataTypes = {
 
 const data: dataTypes[] = [
   {
-    icon: 'ri-car-line',
+    icon: 'ri-user-line',
     heading: 'Activos',
     time: '2hr 10min',
     progressColor: 'action',
@@ -38,7 +38,7 @@ const data: dataTypes[] = [
     widthClass: 'is-[39.7%]'
   },
   {
-    icon: 'ri-download-2-line',
+    icon: 'ri-medicine-bottle-line',
     heading: 'Preanestesia',
     time: '3hr 15min',
     progressColor: 'primary',
@@ -47,7 +47,7 @@ const data: dataTypes[] = [
     widthClass: 'is-[28.3%]'
   },
   {
-    icon: 'ri-upload-line',
+    icon: 'ri-surgical-mask-line',
     heading: 'Pabellón',
     time: '1hr 24min',
     progressColor: 'info',
@@ -56,7 +56,7 @@ const data: dataTypes[] = [
     widthClass: 'is-[17.4%]'
   },
   {
-    icon: 'ri-time-line',
+    icon: 'ri-hotel-bed-line',
     heading: 'Recuperación',
     time: '5hr 19min',
     progressColor: 'SnackbarContent',

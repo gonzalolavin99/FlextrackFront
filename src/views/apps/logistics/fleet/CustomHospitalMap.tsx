@@ -610,7 +610,7 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
         {/* Panel de información */}
         <rect x='0' y='0' width='4.5' height='3.4' rx='0.2' fill='white' stroke={borderColor} strokeWidth='0.08' />
         {/* Título */}
-        <rect x='0.25' y='0' width='4' height='0.4' rx='0.2' fill={borderColor} />
+        <rect x='0.02' y='0' width='4.5' height='0.4' rx='0.2' fill={borderColor} />
         <text x='2.25' y='0.3' textAnchor='middle' fill='white' style={{ fontSize: '0.25px', fontWeight: 'bold' }}>
           {`${selectedPatient.rut} - ${getZoneName(normalizedZone)}`}
         </text>
@@ -690,7 +690,7 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
           </text>
         </g>
         {/* Botón de cerrar */}
-        <g transform='translate(3.8, 0.4)' onClick={() => setShowPatientDetails(false)} style={{ cursor: 'pointer' }}>
+        <g transform='translate(4.3, 0.2)' onClick={() => setShowPatientDetails(false)} style={{ cursor: 'pointer' }}>
           <circle cx='0' cy='0' r='0.15' fill='white' stroke='#ccc' strokeWidth='0.01' />
           <line x1='-0.08' y1='-0.08' x2='0.08' y2='0.08' stroke='#999' strokeWidth='0.02' />
           <line x1='-0.08' y1='0.08' x2='0.08' y2='-0.08' stroke='#999' strokeWidth='0.02' />

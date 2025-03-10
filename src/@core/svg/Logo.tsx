@@ -3,7 +3,7 @@ import type { SVGAttributes } from 'react'
 
 const Logo = (props: SVGAttributes<SVGElement>) => {
   return (
-    <svg width='1.2658em' height='1em' viewBox='0 0 100 79' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width='1.2658em' height='0.9em' viewBox='0 0 100 79' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

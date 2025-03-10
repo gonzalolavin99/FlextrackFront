@@ -32,28 +32,28 @@ export const db: CardStatsType = {
       title: 'Pacientes Activos',
       stats: 5,
       trendNumber: 18.2,
-      avatarIcon: 'ri-car-line',
+      avatarIcon: 'ri-user-line',
       color: 'primary'
     },
     {
       title: 'Pacientes en preanestesia',
       stats: 8,
       trendNumber: -8.7,
-      avatarIcon: 'ri-alert-line',
+      avatarIcon: 'ri-medicine-bottle-line',
       color: 'warning'
     },
     {
       title: 'Pacientes en pabellon',
       stats: 3,
       trendNumber: 4.3,
-      avatarIcon: 'ri-route-line',
+      avatarIcon: 'ri-surgical-mask-line',
       color: 'error'
     },
     {
       title: 'Pacientes en recuperación', 
       stats: 13,
       trendNumber: 2.5,
-      avatarIcon: 'ri-time-line',
+      avatarIcon: 'ri-hotel-bed-line',
       color: 'info'
     }
   ],
