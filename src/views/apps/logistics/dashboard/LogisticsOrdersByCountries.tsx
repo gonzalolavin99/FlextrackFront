@@ -57,21 +57,21 @@ const data: Data = {
     {
       sender: {
         name: 'Micheal Hughes',
-        address: '101 Boulder, California (CA), 933130'
+        address: 'Extracción apéndice'
       },
       receiver: {
-        name: 'Daisy Coleman',
-        address: '939 Orange, California (CA), 910614'
+        name: 'Dra. Daisy Coleman',
+        address: 'Especialidad de Medicina'
       }
     },
     {
       sender: {
         name: 'Glenn Todd',
-        address: '1713 Garnet, California (CA), 939573'
+        address: 'Cirugía de rodilla'
       },
       receiver: {
-        name: 'Arthur West',
-        address: '156 Blaze, California (CA), 925878'
+        name: 'Dr. Arthur West',
+        address: 'Especialidad de Medicina'
       }
     }
   ],
@@ -79,21 +79,21 @@ const data: Data = {
     {
       sender: {
         name: 'Rose Cole',
-        address: '61 Unions, California (CA), 922523'
+        address: 'Cirugía de codo'
       },
       receiver: {
-        name: 'Polly Spencer',
-        address: '865 Delta, California (CA), 932830'
+        name: 'Dra. Polly Spencer',
+        address: 'Especialidad de Medicina'
       }
     },
     {
       sender: {
         name: 'Jerry Wood',
-        address: '37 Marjory, California (CA), 951958'
+        address: 'Cirugía de pulmón'
       },
       receiver: {
-        name: 'Sam McCormick',
-        address: '926 Reynolds, California (CA), 910279'
+        name: 'Dr. Sam McCormick',
+        address: 'Especialidad de Medicina'
       }
     }
   ],
@@ -101,21 +101,21 @@ const data: Data = {
     {
       sender: {
         name: 'Alex Walton',
-        address: '78 Judson, California (CA), 956084'
+        address: 'Craneotomía'
       },
       receiver: {
-        name: 'Eula Griffin',
-        address: '56 Bernard, California (CA), 965133'
+        name: 'Dra. Eula Griffin',
+        address: 'Especialidad de Medicina'
       }
     },
     {
       sender: {
         name: 'Lula Barton',
-        address: '95 Gaylord, California (CA), 991955'
+        address: 'Traqueostomía'
       },
       receiver: {
-        name: 'Craig Jacobs',
-        address: '73 Sandy, California (CA), 954566'
+        name: 'Dr. Craig Jacobs',
+        address: 'Especialidad de Medicina'
       }
     }
   ]
@@ -132,16 +132,16 @@ const LogisticsOrdersByCountries = () => {
   return (
     <Card>
       <CardHeader
-        title='Orders by Countries'
-        subheader='62 deliveries in progress'
+        title='Futuros Procedimientos'
+        subheader='Procediemientos agendados 48'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Show all orders', 'Share', 'Refresh']} />}
         className='pbe-4'
       />
       <TabContext value={value}>
         <TabList variant='fullWidth' onChange={handleChange} aria-label='full width tabs example'>
-          <Tab value='new' label='New' />
-          <Tab value='preparing' label='Preparing' />
-          <Tab value='shipping' label='Shipping' />
+          <Tab value='new' label='Nuevos' />
+          <Tab value='preparing' label='Hoy' />
+          <Tab value='shipping' label='En proceso' />
         </TabList>
         <TabPanel value={value} className='pbs-0'>
           <CardContent>

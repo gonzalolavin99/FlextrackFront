@@ -23,11 +23,11 @@ type dataTypes = {
 }
 
 const deliveryData: dataTypes[] = [
-  { title: 'Pacientes atendidos en los últimos 7 días', value: '10k', change: 25.8, icon: 'ri-gift-line', color: 'primary' },
+  { title: 'Pacientes últimos 7 días', value: '1k', change: 25.08, icon: 'ri-gift-line', color: 'primary' },
   { title: 'Pacientes últimos 30 días', value: '5k', change: 4.3, icon: 'ri-car-line', color: 'info' },
-  { title: 'Packages delivered', value: '15k', change: -12.5, icon: 'ri-check-line', color: 'success' },
-  { title: 'Delivery success rate', value: '95%', change: 35.6, icon: 'ri-home-6-line', color: 'warning' },
-  { title: 'Average delivery time', value: '2.5 Days', change: -2.15, icon: 'ri-time-line', color: 'secondary' },
+  { title: 'Pacientes en espera', value: '15k', change: -12.5, icon: 'ri-check-line', color: 'success' },
+  { title: 'Procediemientos exitosos', value: '95%', change: 35.6, icon: 'ri-home-6-line', color: 'warning' },
+  { title: 'Tiempo promedio estancia pacientes', value: '4 horas', change: -2.15, icon: 'ri-time-line', color: 'secondary' },
   { title: 'Satisfacción de los pacientes', value: '4.5/5', change: 5.7, icon: 'ri-user-3-line', color: 'error' }
 ]
 

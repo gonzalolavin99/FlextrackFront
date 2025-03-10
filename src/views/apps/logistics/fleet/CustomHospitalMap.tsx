@@ -81,7 +81,7 @@ interface ProcedureInfo {
 
 const DEMO_PROCEDURES: Record<string, ProcedureInfo> = {
   // Los IDs pueden ser RUT de pacientes reales para hacer match
-  '8953590-5': {
+  '8953590': {
     name: 'Artroplastia de rodilla',
     physician: 'Dr. Alejandro Rodríguez',
     room: 'Pabellón 2',
@@ -93,7 +93,7 @@ const DEMO_PROCEDURES: Record<string, ProcedureInfo> = {
     room: 'Pabellón 4',
     estimatedDuration: 90
   },
-  '8948083-3': {
+  '8948083': {
     name: 'Extracción de apéndice',
     physician: 'Dr. Carlos Méndez',
     room: 'Pabellón 1',
@@ -608,22 +608,17 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
     return (
       <g transform={`translate(${position.x - 2}, ${position.y + 0.5})`}>
         {/* Panel de información */}
-        <rect x='0' y='0' width='4' height='3.4' rx='0.2' fill='white' stroke={borderColor} strokeWidth='0.05' />
-
+        <rect x='0' y='0' width='4.5' height='3.4' rx='0.2' fill='white' stroke={borderColor} strokeWidth='0.08' />
         {/* Título */}
-        <rect x='0' y='0' width='4' height='0.4' rx='0.2' fill={borderColor} />
-
-        <text x='2' y='0.3' textAnchor='middle' fill='white' style={{ fontSize: '0.25px', fontWeight: 'bold' }}>
+        <rect x='0.25' y='0' width='4' height='0.4' rx='0.2' fill={borderColor} />
+        <text x='2.25' y='0.3' textAnchor='middle' fill='white' style={{ fontSize: '0.25px', fontWeight: 'bold' }}>
           {`${selectedPatient.rut} - ${getZoneName(normalizedZone)}`}
         </text>
-
         {/* Información del paciente */}
-        <text x='0.2' y='0.65' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
+        <text x='0.5' y='0.65' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
           Última actualización: {formatDateTime(selectedPatient.ultima_actualizacion)}
         </text>
-
         <line x1='0.2' x2='3.8' y1='0.75' y2='0.75' stroke='#eee' strokeWidth='0.02' />
-
         {/* Timeline */}
         {selectedPatient.ing_preanestesia && (
           <g>
@@ -636,7 +631,6 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             </text>
           </g>
         )}
-
         {selectedPatient.ingreso_pabellon && (
           <g>
             <text x='0.2' y='1.3' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
@@ -648,7 +642,6 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             </text>
           </g>
         )}
-
         {selectedPatient.ingreso_recu && (
           <g>
             <text x='0.2' y='1.6' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
@@ -660,10 +653,8 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             </text>
           </g>
         )}
-
         {/* Línea divisoria */}
         <line x1='0.2' x2='3.8' y1='1.9' y2='1.9' stroke='#eee' strokeWidth='0.02' />
-
         {/* Información del procedimiento si está disponible */}
         <g>
           <text x='0.2' y='2.1' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
@@ -673,7 +664,6 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             {procedureInfo?.name || 'Información no disponible'}
           </text>
         </g>
-
         <g>
           <text x='0.2' y='2.4' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
             Médico:
@@ -682,16 +672,15 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             {procedureInfo?.physician || 'Información no disponible'}
           </text>
         </g>
-
+        // En el método renderPatientDetails
         <g>
           <text x='0.2' y='2.7' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
             ID de Beacon:
           </text>
           <text x='1.8' y='2.7' fill='#333' style={{ fontSize: '0.2px' }}>
-            {selectedPatient.tag || 'No asignado'}
+            {selectedPatient.tag || selectedPatient.beacon_mac || 'No asignado'}
           </text>
         </g>
-
         <g>
           <text x='0.2' y='3.0' fill='#333' style={{ fontSize: '0.2px', fontWeight: 'bold' }}>
             Sala:
@@ -700,7 +689,6 @@ const CustomHospitalMap: React.FC<CustomHospitalMapProps> = ({
             {procedureInfo?.room || 'Información no disponible'}
           </text>
         </g>
-
         {/* Botón de cerrar */}
         <g transform='translate(3.8, 0.4)' onClick={() => setShowPatientDetails(false)} style={{ cursor: 'pointer' }}>
           <circle cx='0' cy='0' r='0.15' fill='white' stroke='#ccc' strokeWidth='0.01' />

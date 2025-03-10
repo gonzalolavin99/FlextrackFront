@@ -6,7 +6,8 @@ export interface PatientLocation {
   rut: string
   ubicacion_actual: string
   ultima_actualizacion: Date
-  beacon_mac: string
+  beacon_mac: string // Esta propiedad ya existe, pero es posible que la estés accediendo como 'tag'
+  tag?: string // Añadir esta propiedad para compatibilidad
   rssi: number
   distancia: number
   x: number
@@ -45,7 +46,7 @@ interface PatientStore {
   setError: (error: string | null) => void
 }
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001'
 const TIME_WINDOW = 5 * 60 * 1000 // 5 minutos en milisegundos
 
 let socketInstance: Socket | null = null

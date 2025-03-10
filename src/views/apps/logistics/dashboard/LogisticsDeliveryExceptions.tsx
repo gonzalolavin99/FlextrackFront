@@ -25,7 +25,7 @@ const LogisticsDeliveryExceptions = () => {
   const theme = useTheme()
 
   const options: ApexOptions = {
-    labels: ['Incorrect address', 'Weather conditions', 'Federal Holidays', 'Damage during transit'],
+    labels: ['Problemas del paciente', 'Problemas del doctor', 'Problemas de pabellón', 'Otros problemas'],
     stroke: {
       width: 0
     },
@@ -87,7 +87,7 @@ const LogisticsDeliveryExceptions = () => {
               label: 'AVG. Exceptions',
               color: 'var(--mui-palette-text-secondary)',
               formatter() {
-                return '30%'
+                return '2%'
               }
             }
           }
@@ -99,7 +99,7 @@ const LogisticsDeliveryExceptions = () => {
   return (
     <Card className='bs-full'>
       <CardHeader
-        title='Delivery exceptions'
+        title='Errores en procedimientos'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Select All', 'Refresh', 'Share']} />}
       />
       <CardContent>

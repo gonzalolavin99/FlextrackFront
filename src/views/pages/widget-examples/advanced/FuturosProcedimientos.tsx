@@ -132,16 +132,16 @@ const OrdersByCountries = () => {
   return (
     <Card>
       <CardHeader
-        title='Orders by Countries'
-        subheader='62 deliveries in progress'
+        title='Futuros Procedimientos'
+        subheader='Procediemientos agendados 48'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Show all orders', 'Share', 'Refresh']} />}
         className='pbe-4'
       />
       <TabContext value={value}>
         <TabList variant='fullWidth' onChange={handleChange} aria-label='full width tabs example'>
-          <Tab value='new' label='New' />
-          <Tab value='preparing' label='Preparing' />
-          <Tab value='shipping' label='Shipping' />
+          <Tab value='new' label='Nuevos' />
+          <Tab value='preparing' label='Hoy' />
+          <Tab value='shipping' label='En proceso' />
         </TabList>
         <TabPanel value={value} className='pbs-0'>
           <CardContent>
