@@ -1,4 +1,4 @@
-// src/views/apps/logistics/fleet/index.tsx
+// src/views/apps/logistics/patients/index.tsx
 'use client'
 
 // React Imports

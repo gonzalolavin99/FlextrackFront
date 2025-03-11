@@ -21,10 +21,7 @@ const verticalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>>)
         label: dictionary['navigation'].analytics,
         href: '/dashboards/analytics'
       },
-      {
-        label: dictionary['navigation'].eCommerce,
-        href: '/dashboards/ecommerce'
-      },
+
       {
         label: dictionary['navigation'].academy,
         href: '/dashboards/academy'
@@ -78,75 +75,6 @@ const verticalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>>)
     isSection: true,
     children: [
       {
-        label: dictionary['navigation'].eCommerce,
-        icon: 'ri-shopping-bag-3-line',
-        children: [
-          {
-            label: dictionary['navigation'].dashboard,
-            href: '/apps/ecommerce/dashboard'
-          },
-          {
-            label: dictionary['navigation'].products,
-            children: [
-              {
-                label: dictionary['navigation'].list,
-                href: '/apps/ecommerce/products/list'
-              },
-              {
-                label: dictionary['navigation'].add,
-                href: '/apps/ecommerce/products/add'
-              },
-              {
-                label: dictionary['navigation'].category,
-                href: '/apps/ecommerce/products/category'
-              }
-            ]
-          },
-          {
-            label: dictionary['navigation'].orders,
-            children: [
-              {
-                label: dictionary['navigation'].list,
-                href: '/apps/ecommerce/orders/list'
-              },
-              {
-                label: dictionary['navigation'].details,
-                href: '/apps/ecommerce/orders/details/5434',
-                exactMatch: false,
-                activeUrl: '/apps/ecommerce/orders/details'
-              }
-            ]
-          },
-          {
-            label: dictionary['navigation'].customers,
-            children: [
-              {
-                label: dictionary['navigation'].list,
-                href: '/apps/ecommerce/customers/list'
-              },
-              {
-                label: dictionary['navigation'].details,
-                href: '/apps/ecommerce/customers/details/879861',
-                exactMatch: false,
-                activeUrl: '/apps/ecommerce/customers/details'
-              }
-            ]
-          },
-          {
-            label: dictionary['navigation'].manageReviews,
-            href: '/apps/ecommerce/manage-reviews'
-          },
-          {
-            label: dictionary['navigation'].referrals,
-            href: '/apps/ecommerce/referrals'
-          },
-          {
-            label: dictionary['navigation'].settings,
-            href: '/apps/ecommerce/settings'
-          }
-        ]
-      },
-      {
         label: dictionary['navigation'].academy,
         icon: 'ri-graduation-cap-line',
         children: [
@@ -171,10 +99,6 @@ const verticalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>>)
           {
             label: dictionary['navigation'].dashboard,
             href: '/apps/logistics/dashboard'
-          },
-          {
-            label: dictionary['navigation'].fleet,
-            href: '/apps/logistics/fleet'
           }
         ]
       },

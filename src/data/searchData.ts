@@ -23,13 +23,7 @@ const data: SearchData[] = [
     icon: 'ri-bar-chart-line',
     section: 'Dashboards'
   },
-  {
-    id: '3',
-    name: 'eCommerce Dashboard',
-    url: '/dashboards/ecommerce',
-    icon: 'ri-shopping-cart-2-line',
-    section: 'Dashboards'
-  },
+  
   {
     id: '4',
     name: 'Academy Dashboard',
@@ -85,83 +79,6 @@ const data: SearchData[] = [
     section: 'Front Pages'
   },
   {
-    id: '11',
-    name: 'eCommerce - Dashboard',
-    url: '/apps/ecommerce/dashboard',
-    icon: 'ri-shopping-cart-2-line',
-    section: 'Apps'
-  },
-  {
-    id: '12',
-    name: 'eCommerce - Product List',
-    url: '/apps/ecommerce/products/list',
-    icon: 'ri-file-list-line',
-    section: 'Apps'
-  },
-  {
-    id: '13',
-    name: 'eCommerce - Add New Product',
-    url: '/apps/ecommerce/products/add',
-    icon: 'ri-add-line',
-    section: 'Apps'
-  },
-  {
-    id: '14',
-    name: 'eCommerce - Product Category',
-    url: '/apps/ecommerce/products/category',
-    icon: 'ri-list-unordered',
-    section: 'Apps'
-  },
-  {
-    id: '15',
-    name: 'eCommerce - Order List',
-    url: '/apps/ecommerce/orders/list',
-    icon: 'ri-list-unordered',
-    section: 'Apps'
-  },
-  {
-    id: '16',
-    name: 'eCommerce - Order Details',
-    url: '/apps/ecommerce/orders/details/5434',
-    icon: 'ri-play-list-line',
-    section: 'Apps'
-  },
-  {
-    id: '17',
-    name: 'eCommerce - Customer List',
-    url: '/apps/ecommerce/customers/list',
-    icon: 'ri-user-line',
-    section: 'Apps'
-  },
-  {
-    id: '18',
-    name: 'eCommerce - Customer Details',
-    url: '/apps/ecommerce/customers/details/879861',
-    icon: 'ri-list-unordered',
-    section: 'Apps'
-  },
-  {
-    id: '19',
-    name: 'eCommerce - Manage Reviews',
-    url: '/apps/ecommerce/manage-reviews',
-    icon: 'ri-message-line',
-    section: 'Apps'
-  },
-  {
-    id: '20',
-    name: 'eCommerce - Referrals',
-    url: '/apps/ecommerce/referrals',
-    icon: 'ri-group-line',
-    section: 'Apps'
-  },
-  {
-    id: '21',
-    name: 'eCommerce - Settings',
-    url: '/apps/ecommerce/settings',
-    icon: 'ri-settings-2-line',
-    section: 'Apps'
-  },
-  {
     id: '22',
     name: 'Academy - Dashboard',
     url: '/apps/academy/dashboard',
@@ -191,8 +108,8 @@ const data: SearchData[] = [
   },
   {
     id: '26',
-    name: 'Logistics - Fleet',
-    url: '/apps/logistics/fleet',
+    name: 'Logistics - Patients',
+    url: '/apps/logistics/patients',
     icon: 'ri-car-line',
     section: 'Apps'
   },

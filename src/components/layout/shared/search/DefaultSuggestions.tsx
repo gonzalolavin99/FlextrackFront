@@ -34,11 +34,7 @@ const defaultSuggestions: DefaultSuggestionsType[] = [
         href: '/dashboards/crm',
         icon: 'ri-pie-chart-2-line'
       },
-      {
-        label: 'eCommerce',
-        href: '/dashboards/ecommerce',
-        icon: 'ri-shopping-bag-3-line'
-      },
+     
       {
         label: 'User List',
         href: '/apps/user/list',
