@@ -48,7 +48,7 @@ interface PatientStore {
 
 // URL del socket (ajusta según tu entorno)
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001'
-const TIME_WINDOW = 5 * 60 * 1000 // 5 minutos en milisegundos
+const TIME_WINDOW = 5 * 60 * 1000 
 
 let socketInstance: Socket | null = null
 
