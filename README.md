@@ -23,15 +23,14 @@ Este proyecto proporciona una interfaz de usuario para el Sistema de Seguimiento
 ## Requisitos previos
 
 - Node.js >= 18.0.0
-- npm o yarn
+- npm
 
 ## Instalación
 
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/hospital-tracking.git
-cd hospital-tracking/frontend
+git clone https://github.com/gonzalolavin99/FlextrackFront
 ```
 
 2. Instala las dependencias:
